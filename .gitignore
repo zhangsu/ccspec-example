@@ -1,3 +1,4 @@
+*.swp
 bii/
 build/
 cmake/

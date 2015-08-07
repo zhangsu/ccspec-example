@@ -9,15 +9,15 @@ BinarySearchTree::~BinarySearchTree() {
   delete root_;
 }
 
-BinarySearchTree* BinarySearchTree::add(int elem) {
+BinarySearchTree& BinarySearchTree::add(int elem) {
   return add(elem, &root_);
 }
 
-BinarySearchTree* BinarySearchTree::add(int elem, Node** pnode) {
+BinarySearchTree& BinarySearchTree::add(int elem, Node** pnode) {
   Node* node = *pnode;
   if (node == nullptr) {
     *pnode = new Node(elem, nullptr, nullptr);
-    return this;
+    return *this;
   } else if (node->elem_ < elem) {
     return add(elem, &(node->right_));
   } else {

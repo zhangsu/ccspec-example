@@ -8,7 +8,7 @@ class BinarySearchTree {
   BinarySearchTree();
   virtual ~BinarySearchTree();
 
-  BinarySearchTree* add(int elem);
+  BinarySearchTree& add(int elem);
   bool search(int elem) const;
 
  private:
@@ -21,7 +21,7 @@ class BinarySearchTree {
     ~Node();
   };
 
-  BinarySearchTree* add(int elem, Node**);
+  BinarySearchTree& add(int elem, Node**);
   std::ostream& output(std::ostream&, Node*, int level) const;
 
   Node* root_;

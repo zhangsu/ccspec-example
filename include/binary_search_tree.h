@@ -22,6 +22,7 @@ class BinarySearchTree {
   };
 
   BinarySearchTree& add(int elem, Node**);
+  bool search(int elem, Node*) const;
   std::ostream& output(std::ostream&, Node*, int level) const;
 
   Node* root_;

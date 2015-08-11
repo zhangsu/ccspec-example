@@ -13,6 +13,10 @@ BinarySearchTree& BinarySearchTree::add(int elem) {
   return add(elem, &root_);
 }
 
+bool BinarySearchTree::search(int elem) {
+  return search(elem, &root_);
+}
+
 BinarySearchTree& BinarySearchTree::add(int elem, Node** pnode) {
   Node* node = *pnode;
   if (node == nullptr) {
@@ -23,6 +27,21 @@ BinarySearchTree& BinarySearchTree::add(int elem, Node** pnode) {
   } else {
     return add(elem, &(node->left_));
   }
+}
+
+bool BinarySearchTree::search(int elem, Node* node) {
+  if (node == nullptr) {
+    return false;
+  }
+
+  if (node->elem_ == elem) {
+    return true;
+  }
+
+  if (search(elem, node->left_)) {
+    return true;
+  }
+  return search(elem, node->right_);
 }
 
 ostream& BinarySearchTree::output(ostream& stream, Node* node, int level) const {

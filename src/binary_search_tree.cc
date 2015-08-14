@@ -13,8 +13,8 @@ BinarySearchTree& BinarySearchTree::add(int elem) {
   return add(elem, &root_);
 }
 
-bool BinarySearchTree::search(int elem) {
-  return search(elem, &root_);
+bool BinarySearchTree::search(int elem) const {
+  return search(elem, root_);
 }
 
 BinarySearchTree& BinarySearchTree::add(int elem, Node** pnode) {
@@ -29,7 +29,7 @@ BinarySearchTree& BinarySearchTree::add(int elem, Node** pnode) {
   }
 }
 
-bool BinarySearchTree::search(int elem, Node* node) {
+bool BinarySearchTree::search(int elem, Node* node) const {
   if (node == nullptr) {
     return false;
   }

@@ -34,14 +34,13 @@ bool BinarySearchTree::search(int elem, Node* node) const {
     return false;
   }
 
-  if (node->elem_ == elem) {
+  if (node->elem_ < elem) {
+    return search(elem, node->right_);
+  } else if (node->elem_ > elem) {
+    return search(elem, node->left_);
+  } else {
     return true;
   }
-
-  if (search(elem, node->left_)) {
-    return true;
-  }
-  return search(elem, node->right_);
 }
 
 ostream& BinarySearchTree::output(ostream& stream, Node* node, int level) const {

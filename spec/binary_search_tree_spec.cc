@@ -9,12 +9,18 @@
 using std::cout;
 using std::ostringstream;
 using ccspec::core::Reporter;
+using ccspec::core::after;
+using ccspec::core::before;
 using ccspec::core::describe;
 using ccspec::core::formatters::DocumentationFormatter;
 using ccspec::core::it;
 using ccspec::matchers::be;
+using ccspec::matchers::be_falsey;
+using ccspec::matchers::be_truthy;
 using ccspec::matchers::eq;
 using ccspec::expect;
+
+BinarySearchTree* bst;
 
 auto bst_spec = describe("BinarySearchTree", [] {
   describe("#add", [] {
@@ -37,6 +43,37 @@ auto bst_spec = describe("BinarySearchTree", [] {
           "      1\n"
           "  0\n"
           ""));
+    });
+  });
+
+  describe("#search", [] {
+    before("each", [] {
+      bst = new BinarySearchTree();
+      bst->add(3).add(1).add(5).add(0).add(2).add(4);
+    });
+
+    after("each", [] {
+      delete bst;
+    });
+
+    it("returns true if the given element is at root", [] {
+      expect(bst->search(3)).to(be_truthy);
+    });
+
+    it("returns true if the given element is the min element", [] {
+      expect(bst->search(0)).to(be_truthy);
+    });
+
+    it("returns true if the given element is the max element", [] {
+      expect(bst->search(5)).to(be_truthy);
+    });
+
+    it("returns true if the given element is in the tree", [] {
+      expect(bst->search(2)).to(be_truthy);
+    });
+
+    it("returns true if the given element is not in the tree", [] {
+      expect(bst->search(42)).to(be_falsey);
     });
   });
 });
